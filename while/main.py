@@ -9,47 +9,50 @@ if __name__ == '__main__':
     print(random_koala_fact())
 
 
-def unique_koala_facts(target):
+def unique_koala_facts(target: int) -> list:
      count = 0
-     fact_set = set()
-     while count <= target:
-         fact = random_koala_fact()
-         count += 1
-         fact_set.update([fact])
-     else:
-         return sorted(fact_set)
+     fact_list = []
+     while count < 50:
+         if len(fact_list) == target:
+             break
+         else:
+             fact = random_koala_fact()
+             if fact not in fact_list:
+                 fact_list.append(fact)
+             else:
+                 count = + 1
+     return fact_list
 
-print(unique_koala_facts(20))
+print(unique_koala_facts(30))
 
-def num_joey_facts(target):
+def num_joey_facts(target: int) -> list:
     count = 0
     joey_facts = set()
-    counter = set()
-    while count < target:
-        fact = random_koala_fact()
-        if "joey" in fact:
-            count += 1
-            joey_facts.update([fact])
-            counter.update([count])
+    while count < 20:
+        if len(joey_facts) == target:
+            break
         else:
-            continue
-    return joey_facts, counter
+            fact = random_koala_fact()
+            if "joey" in fact:
+                joey_facts.update([fact])
+            else:
+                count =+ 1
+    return joey_facts
 
-print(num_joey_facts(10))
+print(num_joey_facts(20))
 
-def koala_weight(target):
-    new_list = set()
+def koala_weight(target: int) -> int:
+    weight_koala = []
     count = 0
-    while count < target:
-        fact = unique_koala_facts(20)
-        count += 1
-        item = '14kg'
-        new_list.update(fact)
-        if target >= 20:
-            for i in new_list:
-                if item in i:
-                    return item
-                else:
-                    continue
+    while count < 30:
+        if len(weight_koala) == target:
+            break
+        else:
+            fact = random_koala_fact()
+            if "14kg" in fact:
+                weight_koala.append(fact)
+            else:
+                count += 1
+    return str(weight_koala).find("kg")
 
 print(koala_weight(20))
